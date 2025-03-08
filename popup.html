@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Proxy Manager</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Proxy Manager</h1>
+
+            <div class="tabs">
+                <button class="tab-btn active"
+                    data-tab="settings">Настройки</button>
+                <button class="tab-btn" data-tab="profiles">Профили</button>
+                <button class="tab-btn" data-tab="info">Информация</button>
+            </div>
+
+            <div class="tab-content active" id="settings-tab">
+                <div class="status-container">
+                    <span class="status-label">Статус:</span>
+                    <span id="status" class="status-off">Выключен</span>
+                    <label class="switch">
+                        <input type="checkbox" id="proxyToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+
+                <div class="connection-info-container hidden"
+                    id="connection-info">
+                    <div class="ip-container">
+                        <span>IP-адрес:</span>
+                        <span id="current-ip">Определение...</span>
+                    </div>
+                    <div class="connection-status">
+                        <span>Подключение:</span>
+                        <span id="connection-status">Неизвестно</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="proxyType">Тип прокси:</label>
+                    <select id="proxyType" class="select-input">
+                        <option value="http">HTTP</option>
+                        <option value="https">HTTPS</option>
+                        <option value="socks4">SOCKS4</option>
+                        <option value="socks5">SOCKS5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="proxyHost">Хост:</label>
+                    <input type="text" id="proxyHost"
+                        placeholder="например, 192.168.1.1">
+                </div>
+
+                <div class="form-group">
+                    <label for="proxyPort">Порт:</label>
+                    <input type="number" id="proxyPort"
+                        placeholder="например, 8080">
+                </div>
+
+                <div class="auth-section">
+                    <div class="auth-header">
+                        <h3>Аутентификация</h3>
+                        <label class="switch small">
+                            <input type="checkbox" id="authToggle">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div id="authFields" class="hidden">
+                        <div class="form-group">
+                            <label for="username">Имя пользователя:</label>
+                            <input type="text" id="username">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Пароль:</label>
+                            <input type="password" id="password">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button id="saveButton"
+                        class="btn primary">Сохранить</button>
+                    <button id="clearButton"
+                        class="btn secondary">Очистить</button>
+                    <button id="testButton" class="btn test">Проверить</button>
+                </div>
+            </div>
+
+            <div class="tab-content" id="profiles-tab">
+                <div class="profile-actions">
+                    <input type="text" id="profileName"
+                        placeholder="Имя профиля">
+                    <button id="saveProfileButton" class="btn primary">Сохранить
+                        профиль</button>
+                </div>
+                <div class="profiles-list" id="profilesList">
+                    <div class="empty-profiles">Нет сохраненных профилей</div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="info-tab">
+                <div class="info-card">
+                    <h3>Текущий IP-адрес</h3>
+                    <div class="ip-details">
+                        <div class="ip-address"
+                            id="info-ip">Определение...</div>
+                        <div class="ip-location"
+                            id="ip-location">Определение...</div>
+                    </div>
+                </div>
+                <div class="info-card">
+                    <h3>Информация о подключении</h3>
+                    <table class="info-table">
+                        <tr>
+                            <td>Статус:</td>
+                            <td id="info-status">Неизвестно</td>
+                        </tr>
+                        <tr>
+                            <td>Тип прокси:</td>
+                            <td id="info-proxy-type">Не используется</td>
+                        </tr>
+                        <tr>
+                            <td>Хост:</td>
+                            <td id="info-host">-</td>
+                        </tr>
+                        <tr>
+                            <td>Порт:</td>
+                            <td id="info-port">-</td>
+                        </tr>
+                        <tr>
+                            <td>Задержка:</td>
+                            <td id="info-latency">-</td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="refreshInfoButton"
+                    class="btn primary full-width">Обновить информацию</button>
+            </div>
+        </div>
+
+        <div id="notification" class="notification hidden">
+            <span id="notification-message"></span>
+            <button id="notification-close"
+                class="notification-close">&times;</button>
+        </div>
+
+        <script src="popup.js"></script>
+    </body>
+</html>
